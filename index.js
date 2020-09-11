@@ -1,7 +1,20 @@
 ///////////////Menu Items (MVP)///////////////////
 
   const latte = {name: "Cafe Latte", price: 4, category: "Drinks"};
-  const burger = {name: "Burger", price: 18, category: "Lunch"};
+  const burger = {
+    name: "Burger", 
+    price: 18, 
+    category: "Lunch",
+    discount: function(str){
+      if(str === "teacher" || "student"){
+        let discount = 18 * .75;
+        return discount;
+      }else{
+        discount = 18 * .90;
+        return discount;
+      }
+    }
+  };
   const breakfastBurrito = {name: "Breakfast Burrito", price: 16, category:"Breakfast"};
 
   /* Task 1a: write a function to return more menu items with the same format as the items above. */
@@ -37,19 +50,10 @@ Your method should accept:
 and should return a number. 
 
 For example, burger.discount("teacher") would return 13.5 and burger.discount("public") would return 16.2*/
- 
-//{
-  //discount: function(str){
-    //if(str === "teacher" || "student"){
-      //price *= .75;
-      //return price;
-    //}else{
-      //price *= .90;
-      //return price;
-    //}
-  //}
-//}
-//console.log(burger.discount("teacher"));
+
+//Work done above
+
+console.log(burger.discount("teacher"));
 
 ///////////////Reviews (MVP)///////////////////
 
@@ -61,16 +65,35 @@ const reviews = [{name: "Daniela", rating: 5, feedback:"Beautiful atmosphere and
     {name: "Julius", rating: 2, feedback: "I was largely unimpressed by this venue. Nothing special on the menu and too expensive. The atmosphere is polarizing, and not for me, but I think some would like it." },
     {name:"Lauren", rating: 4, feedback: "Absolutely love that they have karaoke Fridays! Food and drink selection is okay."},
     {name:"Reyna", rating: 3.5, feedback: ""},
+    
 ]
 
 /* Task 3: Console.log just Julius' feedback */
+let feedback = [];
 
+for(let i=0; i<reviews.length; i++){
+  if(reviews[i].name === "Julius"){
+    feedback.push(reviews[i]);
+  }
+}
+console.log(feedback[0].feedback);
   
 /* Task 4: Add a new rating with your (fictitious) opinions of the restaurant in the same format as the reviews above. */
+{
+reviews.name = 'Matt';
+reviews.ratings = 4;
+reviews.feedback = "I was fairly impressed";
+}
 
 
-/* Task 5: Add the following feedback to Reyna's rating - "this place is chill with really cool people, great for getting work done on weekdays"
+/* Task 5: Add the following feedback to Reyna's rating - "this place is chill with really cool people, great for getting work done on weekdays" */
 
+for(let i=0; i<reviews.length; i++){
+  if(reviews[i].name === "Reyna"){
+    reviews[i].feedback = "this place is chill with really cool people, great for getting work done on weekdays";
+  }
+}
+console.log(reviews);
 /*  Task 6: Write a function to return a review based on the index of the review in the array.
 
  Your function should take two arguments:
@@ -83,10 +106,14 @@ and should return a string in the format `{name} gave the restaurant a {rating},
  * For example, if getReviewByIndex is invoked with reviews and the number 0
  * it will return `Daniela gave the restaurant a 5 star review and their feedback was: Beautiful atmosphere and wonderful vegan options!`
 */
-function getReviewByIndex(reviews, index) {
-    /* code here */
-  }
-  
+function getReviewByIndex(arr, index) {
+  for(let i=0; i<arr.length; i++){
+    if(i === index){
+      console.log(arr.name[i] + " gave the restaurant a:" + arr.ratings[i] + "and their feedback was:" + arr.feedback[i]);
+    }  
+  }  
+}
+getReviewByIndex(reviews, 1);
 
 /* Task 7: Write a function to get information about the most recent review called `getLastReview`
 
@@ -97,10 +124,13 @@ and should return a string in the format `name} gave the restaurant a {rating}, 
 
 For example, if getLastReview is invoked passing the reviews array it will return `Reyna gave the restaurant a 3.5 star review and their feedback was: "this place is chill with really cool people, great for getting work done on weekdays"`.
 */
-function getLastReview(/* code here */) {
-    /* code here */
+function getLastReview(arr) {
+    for(let i=0; i<arr.length; i++){
+      if(i === (arr.length-1))
+        return arr[i];
+    }
   } 
-
+console.log(getLastReview(reviews));
 
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
 
